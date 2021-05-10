@@ -13,17 +13,16 @@ public class Movement : MonoBehaviour
     void Update()
     {
         if (Grounded && Input.GetButtonDown("Jump"))
+        {
+            Grounded = false;
             Jump();
+        }
 
         inputAxis = Input.GetAxis("Horizontal");
         Animator.SetFloat("Horizontal", inputAxis);
         directionVector.x = inputAxis;
         if (inputAxis > 0 && transform.localScale.x < 0 || inputAxis < 0 && transform.localScale.x > 0)
             DoSpriteMirroring();
-
-        inputAxis = Input.GetAxis("Vertical");
-        Animator.SetFloat("Vertical", inputAxis);
-        directionVector.y = inputAxis;
 
         transform.position += directionVector * Math.Abs(gameObject.transform.localScale.x) * Time.deltaTime;
     }
