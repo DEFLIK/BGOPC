@@ -11,10 +11,13 @@ public class CameraController : MonoBehaviour
     private Transform target;
 
     [SerializeField]
-    private Sprite background;
-
+    private float leftLimit;
     [SerializeField]
-    private float size;
+    private float rightLimit;
+    [SerializeField]
+    private float bottomLimit;
+    [SerializeField]
+    private float upperLimit;
 
     //private void Awake()
     //{
@@ -23,9 +26,17 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 position = target.position;  position.z = -10.0f;  position.y += 2.0f; 
-        //if (Mathf.Abs(transform.position.x) < 2.5 || Mathf.Abs(transform.position.y) < 1.5)
-            transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
+        Vector3 position = target.position;  position.z = -10.0f;  
+        transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
+
+        transform.position = new Vector3
+            (
+            Mathf.Clamp(transform.position.x, leftLimit, rightLimit),
+            Mathf.Clamp(transform.position.y, bottomLimit, upperLimit),
+            transform.position.z
+            );
+
+
     }
 
 
