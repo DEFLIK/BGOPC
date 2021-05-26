@@ -21,37 +21,45 @@ public class AssitantTrigger : MonoBehaviour
         isActive = false;
         assAnim = assistant.GetComponent<Animator>();
         pointAnim = pointer.GetComponent<Animator>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            assistant.SetActive(true);
             pointer.SetActive(true);
             pointAnim.Play("PointerAppear");
-
-            if (Input.GetButtonDown("Submit"))
-            {
-                if (!isActive)
-                {
-                    assistant.SetActive(true);
-
-                    assAnim.Play("Appearance");
-                    isActive = true;
-                }
-                else
-                {
-                    Disappearance();
-                }
-            }
+            assAnim.Play("Appearance");
         }
     }
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        if (!isActive)
+    //        {
+    //            assistant.SetActive(true);
+
+    //            assAnim.Play("Appearance");
+    //            isActive = true;
+    //        }
+    //        else
+    //        {
+    //            assAnim.Play("Disappearance");
+    //            isActive = false;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             pointAnim.Play("PointerDisappear");
+            assAnim.Play("Disappearance");
         }
     }
 
@@ -68,5 +76,6 @@ public class AssitantTrigger : MonoBehaviour
         pointAnim.Play("PointerDisappear");
         yield return new WaitForSeconds(1f);
         pointer.SetActive(false);
+
     }
 }
