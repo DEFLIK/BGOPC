@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
         transform.position += directionVector * Math.Abs(gameObject.transform.localScale.x) * Time.deltaTime;
     }
 
-    private void Jump() => gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
+    private void Jump() => gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 6f), ForceMode2D.Impulse);
 
     private void DoSpriteMirroring()
     {
