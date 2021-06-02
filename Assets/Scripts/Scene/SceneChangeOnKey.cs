@@ -22,6 +22,6 @@ public class SceneChangeOnKey : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             if (Input.GetKeyDown(KeyCode.PageDown) || Input.GetKeyDown(KeyCode.S))
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
     }
 }
