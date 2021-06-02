@@ -28,16 +28,27 @@ public class AssitantTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            assistant.SetActive(true);
+            //assistant.SetActive(true);
             pointer.SetActive(true);
             pointAnim.Play("PointerAppear");
-            assAnim.Play("Appearance");
+            //assAnim.Play("Appearance");
         }
     }
 
     //private void OnTriggerStay2D(Collider2D collision)
     //{
-    //    if (Input.GetKeyDown(KeyCode.E))
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            assistant.SetActive(true);
+
+    //            assAnim.Play("Appearance");
+    //            isActive = true;
+    //        }
+    //    }
+
+    //    if (Input.GetButtonDown("f"))
     //    {
     //        if (!isActive)
     //        {
@@ -59,7 +70,7 @@ public class AssitantTrigger : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             pointAnim.Play("PointerDisappear");
-            assAnim.Play("Disappearance");
+            //assAnim.Play("Disappearance");
         }
     }
 
@@ -77,5 +88,24 @@ public class AssitantTrigger : MonoBehaviour
         yield return new WaitForSeconds(1f);
         pointer.SetActive(false);
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isActive)
+            {
+                assAnim.Play("Disappearance");
+                isActive = false;
+            }
+            else
+            {
+                assistant.SetActive(true);
+
+                assAnim.Play("Appearance");
+                isActive = true;
+            }
+        }
     }
 }
