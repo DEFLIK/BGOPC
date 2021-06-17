@@ -10,12 +10,21 @@ public class Movement : MonoBehaviour
     private float inputAxis;
     private Vector3 currentScale;
 
+    public AudioClip jump;
+    public AudioSource audio1;
+
+    private void Start()
+    {
+        audio1 = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (Grounded && Input.GetButtonDown("Jump"))
         {
             Grounded = false;
             Jump();
+            audio1.PlayOneShot(jump);
         }
 
         inputAxis = Input.GetAxis("Horizontal");

@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeOnKey : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip OpenScene;
+    private AudioSource audioSource;
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,9 @@ public class SceneChangeOnKey : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                audioSource.PlayOneShot(OpenScene);
                 SceneManager.LoadScene(1);
+            }
     }
 }

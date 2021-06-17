@@ -14,13 +14,18 @@ public class AssitantTrigger : MonoBehaviour
 
     private bool isActive;
 
+    public AudioClip open;
+    private AudioSource audio1;
+
     private void Start()
     {
         pointer.SetActive(false);
         assistant.SetActive(true);
         isActive = true;
+        //audio1.PlayOneShot(open);
         assAnim = assistant.GetComponent<Animator>();
         pointAnim = pointer.GetComponent<Animator>();
+        audio1 = GetComponent<AudioSource>();
         
     }
 
@@ -54,6 +59,7 @@ public class AssitantTrigger : MonoBehaviour
             {
                 assAnim.Play("Disappearance");
                 isActive = false;
+                audio1.PlayOneShot(open);
             }
             else
             {
@@ -61,6 +67,7 @@ public class AssitantTrigger : MonoBehaviour
 
                 assAnim.Play("Appearance");
                 isActive = true;
+                audio1.PlayOneShot(open);
             }
         }
     }
